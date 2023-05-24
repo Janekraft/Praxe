@@ -1,0 +1,121 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "uksouth"
+    },
+    "networkInterfaceName": {
+      "value": "VM011"
+    },
+    "networkSecurityGroupName": {
+      "value": "VM011-nsg"
+    },
+    "networkSecurityGroupRules": {
+      "value": [
+        {
+          "name": "SSH",
+          "properties": {
+            "priority": 300,
+            "protocol": "TCP",
+            "access": "Allow",
+            "direction": "Inbound",
+            "sourceAddressPrefix": "*",
+            "sourcePortRange": "*",
+            "destinationAddressPrefix": "*",
+            "destinationPortRange": "22"
+          }
+        },
+        {
+          "name": "HTTPS",
+          "properties": {
+            "priority": 320,
+            "protocol": "TCP",
+            "access": "Allow",
+            "direction": "Inbound",
+            "sourceAddressPrefix": "*",
+            "sourcePortRange": "*",
+            "destinationAddressPrefix": "*",
+            "destinationPortRange": "443"
+          }
+        },
+        {
+          "name": "HTTP",
+          "properties": {
+            "priority": 340,
+            "protocol": "TCP",
+            "access": "Allow",
+            "direction": "Inbound",
+            "sourceAddressPrefix": "*",
+            "sourcePortRange": "*",
+            "destinationAddressPrefix": "*",
+            "destinationPortRange": "80"
+          }
+        }
+      ]
+    },
+    "subnetName": {
+      "value": "default"
+    },
+    "virtualNetworkId": {
+      "value": "/subscriptions/7a784edb-59ca-4a6d-acd4-3c5e5882392f/resourceGroups/RG_PRAXE_SCRIPT/providers/Microsoft.Network/virtualNetworks/VNET_PRAXE_SCRIPT"
+    },
+    "publicIpAddressName": {
+      "value": "VM011"
+    },
+    "publicIpAddressType": {
+      "value": "Static"
+    },
+    "publicIpAddressSku": {
+      "value": "Standard"
+    },
+    "pipDeleteOption": {
+      "value": "Delete"
+    },
+    "virtualMachineName": {
+      "value": "VM011"
+    },
+    "virtualMachineComputerName": {
+      "value": "VM011"
+    },
+    "virtualMachineRG": {
+      "value": "RG-PRAXE"
+    },
+    "osDiskType": {
+      "value": "Premium_LRS"
+    },
+    "osDiskDeleteOption": {
+      "value": "Delete"
+    },
+    "virtualMachineSize": {
+      "value": "Standard_B1ls"
+    },
+    "nicDeleteOption": {
+      "value": "Delete"
+    },
+    "adminUsername": {
+      "value": "azureuser"
+    },
+    "adminPassword": {
+      "value": "Azure_praxeVM01"
+    },
+    "autoShutdownStatus": {
+      "value": "Enabled"
+    },
+    "autoShutdownTime": {
+      "value": "17:11"
+    },
+    "autoShutdownTimeZone": {
+      "value": "W. Europe Standard Time"
+    },
+    "autoShutdownNotificationStatus": {
+      "value": "Enabled"
+    },
+    "autoShutdownNotificationLocale": {
+      "value": "cs"
+    },
+    "autoShutdownNotificationEmail": {
+      "value": "jan.kuczera@zbyszeklugschdystopiagroup.onmicrosoft.com"
+    }
+  }
+}
