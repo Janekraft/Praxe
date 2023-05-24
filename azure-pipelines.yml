@@ -1,0 +1,35 @@
+variables:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'PRAXE_ACTIVE(2)(7a784edb-59ca-4a6d-acd4-3c5e5882392f)'
+    subscriptionId: '7a784edb-59ca-4a6d-acd4-3c5e5882392f'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'RG_PRAXE_SCRIPT'
+    location: 'UK South'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/Janekraft/Praxe/blob/main/test/template.json'
+    csmParametersFileLink: 'https://github.com/Janekraft/Praxe/blob/main/test/parameters.json'
+    deploymentMode: 'Incremental'
+- group: dev
+
+name: $(variable_group_param) 
+
+stages :        
+  - stage: arm_template_deploy
+    jobs:
+      - job: arm_template_deploy
+        steps:
+              - checkout: self
+ 
+              - task: AzureResourceManagerTemplateDeployment@3
+                inputs:
+                  deploymentScope: 'Resource Group'
+                  azureResourceManagerConnection: 'service_connection'
+                  subscriptionId: '123456'
+                  action: 'Create Or Update Resource Group'
+                  resourceGroupName: 'test'
+                  location: 'westeurope'
+                  templateLocation: 'Linked artifact'
+                  csmFile: '$(System.DefaultWorkingDirectory)/vnet.json'
+                  csmParametersFile: '$(System.DefaultWorkingDirectory)/vnet.parameters.json'
